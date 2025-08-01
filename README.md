@@ -139,7 +139,22 @@ The project includes comprehensive evaluation metrics:
 
 ### Using Pre-trained Models
 
-Pre-trained models are available in the `saved_models/` directory:
+Pre-trained models are available in the `saved_models/` directory. **Note**: Large model files are compressed due to GitHub file size limits.
+
+#### Decompressing Model Files
+
+1. **Run the decompression script:**
+   ```bash
+   ./decompress_models.sh
+   ```
+
+2. **Manual decompression:**
+   ```bash
+   gunzip -k *.pt.gz
+   gunzip -k saved_models/*.pt.gz
+   ```
+
+#### Loading Models
 
 ```python
 import torch
@@ -149,6 +164,19 @@ from transformers import BertTokenizer, BertModel
 model = torch.load('saved_models/improved_biobert_model.pt')
 tokenizer = BertTokenizer.from_pretrained('dmis-lab/biobert-v1.1')
 ```
+
+**Important**: The large BioBERT models (413MB each) are too large for GitHub even after compression. These models are not included in the repository. You can:
+
+1. **Train the models locally** using the provided notebook (`advancedREBL.ipynb`)
+2. **Download pre-trained models** from a file hosting service (links to be provided)
+3. **Use Git LFS** (Large File Storage) if you have access to it
+
+The repository includes:
+- ✅ Baseline CNN model (12MB)
+- ✅ Training history files
+- ✅ Results and evaluation metrics
+- ✅ Complete implementation notebook
+- ❌ Large BioBERT models (413MB each) - excluded due to size limits
 
 ## Methodology
 
